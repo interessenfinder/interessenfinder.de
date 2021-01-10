@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <navigation />
         <h1>test</h1>
         <form>
             <label for="name">Bezeichnung: </label>
@@ -16,9 +17,13 @@
 </template>
 //TODO: get html content in a json file 
 <script>
+import navigation from "../components/nav.vue";
 export default {
   name: 'addInterest',
-}
+  components: {
+    navigation
+  }
+};
 </script>
 
 <style scoped>

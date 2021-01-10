@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <navigation />
+    <strong>BITTE BEACHTEN, diese Seite befindet sich noch im Aufbau, wahrscheiliches Veröffentlichungsdatum ist der 20.01.2021</strong> <br><br>
     <li v-for="user in users" :key="user.id">
     <Interest
       :name="user.name" 
