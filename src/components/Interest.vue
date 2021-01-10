@@ -10,7 +10,7 @@
     </a>
     <a>
         Ist diese Tätigkeit alleine möglich: {{ allone }}
-    </a>
+    </a><br><br>
   </div>
 </template>
 

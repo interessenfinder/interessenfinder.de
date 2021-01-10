@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    
+    <navigation />
     <li v-for="user in users" :key="user.id">
     <Interest
       :name="user.name" 
@@ -12,14 +12,11 @@
     </li>
   </div>
 </template>
-<!--
-<script>
-
-</script>
 -->
 
 <script>
 import usersData from "./assets/interests.json";
+import navigation from "./components/nav.vue";
 import Interest from './components/Interest.vue'
 export default {
   data() {
@@ -29,7 +26,8 @@ export default {
   },
   name: 'App',
   components: {
-    Interest
+    Interest,
+    navigation
   }
 };
 </script>
@@ -40,10 +38,15 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  font-size: medium;
+  color: #EBF0F4;
   margin-top: 60px;
 }
 ul, li {
     list-style-type: none;
+}
+body {
+  padding: 25px;
+  font-size: 25px;
 }
 </style>
