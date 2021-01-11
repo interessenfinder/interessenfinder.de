@@ -17,7 +17,7 @@
 <script>
 import usersData from "./assets/interests.json";
 import navigation from "./components/nav.vue";
-import Interest from './components/Interest.vue'
+import Interest from './components/Interest.vue';
 export default {
   data() {
     return {

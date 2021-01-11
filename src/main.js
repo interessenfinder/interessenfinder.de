@@ -24,7 +24,8 @@ const routes = {
 new Vue({
     el: '#app',
     data: {
-        currentRoute: window.location.pathname
+        currentRoute: window.location.pathname,
+        routes
     },
     computed: {
         ViewComponent() {
