@@ -1,36 +1,13 @@
 <template>
   <div id="app">
-    <navigation />
-    <strong>BITTE BEACHTEN, diese Seite befindet sich noch im Aufbau, wahrscheiliches Veröffentlichungsdatum ist der 20.01.2021</strong> <br><br>
-    <li v-for="user in users" :key="user.id">
-    <Interest
-      :name="user.name" 
-      :description="user.description"
-      :inside="user.indoor"
-      :allone="user.allone"
-    /><br>
-    </li>
+    <img alt="Vue logo" src="@/assets/interessenfinder.png" width="18%">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/ai">Interesse hinzufügen</router-link> 
+    </div>
+    <router-view/>
   </div>
 </template>
--->
-
-<script>
-import usersData from "./assets/interests.json";
-import navigation from "./components/nav.vue";
-import Interest from './components/Interest.vue';
-export default {
-  data() {
-    return {
-      users: usersData,
-      };
-  },
-  name: 'App',
-  components: {
-    Interest,
-    navigation
-  }
-};
-</script>
 
 <style>
 #app {
@@ -38,15 +15,19 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  font-size: medium;
-  color: #EBF0F4;
-  margin-top: 60px;
+  color: #2c3e50;
 }
-ul, li {
-    list-style-type: none;
+
+#nav {
+  padding: 30px;
 }
-body {
-  padding: 25px;
-  font-size: 25px;
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

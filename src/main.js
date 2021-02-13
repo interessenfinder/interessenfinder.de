@@ -1,20 +1,8 @@
-/*import Vue from 'vue'
-import App from './App.vue'
-
-Vue.config.productionTip = false
-const routes = {
-    '/': Home,
-    '/about': About
-}
-
-new Vue({
-    render: h => h(App),
-}).$mount('#app')
-*/
 import Vue from 'vue'
 const NotFound = { template: '<p>Page not found</p>' }
-import addInterest from './components/addInterest'
 import Home from './App.vue'
+import addInterest from '@/views/ai.vue'
+import router from './router'
 
 const routes = {
     '/': Home,
@@ -23,14 +11,18 @@ const routes = {
 
 new Vue({
     el: '#app',
+
     data: {
         currentRoute: window.location.pathname,
         routes
     },
+
     computed: {
         ViewComponent() {
             return routes[this.currentRoute] || NotFound
         }
     },
+
+    router,
     render(h) { return h(this.ViewComponent) }
 })
