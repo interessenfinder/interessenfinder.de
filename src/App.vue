@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="@/assets/interessenfinder.png" width="18%">
+    <img alt="interessenfinder logo" src="@/assets/interessenfinder.png" width="18%">
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/ai">Interesse hinzufügen</router-link> 

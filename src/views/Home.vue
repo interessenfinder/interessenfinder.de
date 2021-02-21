@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <li v-for="user in users" :key="user.id">
+    <strong>Du kannst über 'Interesse hinzufügen' weitere Hobbys hinzufügen, diese Seite lebt von den Nutzern und ist 100 % kostenlos.</strong><br><br><br>
+    <template v-if="loading">
+                <div class="loader"></div>
+            </template>  
+            <template v-else>
+    <li v-for="user in users" :key="user.name">
     <Interest
       :name="user.name" 
       :description="user.description"
@@ -8,25 +13,67 @@
       :allone="user.allone"
     /><br>
     </li>
+    </template>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import usersData from "@/assets/interests.json";
+//import usersData from "@/../api/test.json";
 import Interest from '@/components/Interest.vue'
+import axios from 'axios'
+    export default {
+        data() {
+            return {
+                loading: false,
+                users: []
+            }
+        },
+        created() {
+            this.getDataFromApi()
+        },
+        methods: {
+            getDataFromApi() {
+                this.loading = true
+                axios.get('https://api.interessenfinder.de/data')
+                .then(response => {
+                    this.loading = false
+                    this.users = response.data
+                })
+                .catch(error => {
+                    this.loading = false
+                    console.log(error)
+                })
+            }
+        },
+        name: 'App',
+        components: {
+        Interest
+      }
+    }
+//export default {  
+//  async data() {
+//    const test = (await fetch("https://api.interessenfinder.de/data")).json()
+//    //console.log(test)
+//    console.log(Promise.resolve(test).then())
+//    Promise.resolve(test).then(function(value) {
+//      console.log(value); // "Success"
+//      return {
+//      users: value,
+//      };
+//    }, function() {
+//      //console.log(1 + value); // "Success"
+//});
+//    //return {
+//    //  users: etst,
+//    //  };
+//  },
+//  name: 'App',
+//  components: {
+//    Interest
+//  }
+//};
 
-export default {
-  data() {
-    return {
-      users: usersData,
-      };
-  },
-  name: 'App',
-  components: {
-    Interest
-  }
-};
 </script>
 <style>
 #app {
@@ -44,5 +91,18 @@ ul, li {
 body {
   padding: 25px;
   font-size: 25px;
+}
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>

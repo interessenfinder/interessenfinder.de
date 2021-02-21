@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@melmacaluso/vue-modal": "^2.1.0",
+    "axios": "^0.21.1",
     "ciao-vue-popup": "^1.0.20",
     "core-js": "^3.6.5",
+    "emailjs-com": "^2.6.4",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-tree-nav": "0.0.16"

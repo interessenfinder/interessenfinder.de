@@ -1,7 +1,6 @@
 <template>
     <div id="app">
         <h1>Interesse Hinzufügen</h1>
-        <strong>Momentan speichert dies noch nix.</strong><br><br>
         <form>
             <label for="name">Bezeichnung: </label>
             <input ref="name" type="text" id="name" name="name"><br><br>
@@ -17,13 +16,58 @@
 </template>
 //TODO: get html content in a json file 
 <script>
+
 export default {
     methods: {
     getFormValues () {
-      console.log(this.$refs.name.value)
-      console.log(this.$refs.description.value)
-      console.log(this.$refs.indoor.checked)
-      console.log(this.$refs.allone.checked)
+      var name = this.$refs.name.value
+      var description = this.$refs.description.value
+      var indoor = this.$refs.indoor.checked
+      if(indoor){
+        indoor = 'Ja'
+      }else{
+        indoor = 'Nein'
+      }
+      var allone = this.$refs.allone.checked
+      if(allone){
+        allone = 'Ja'
+      }else{
+        allone = 'Nein'
+      }
+      console.log(name)
+      console.log(description)
+      console.log(indoor)
+      console.log(allone)
+      this.saveToFile(name, description, indoor, allone)
+    },
+    saveToFile(nam, descriptio, isAllone, isIndoor) {
+      /*
+      
+      */
+     var details = {
+       'name': nam,
+       'description': descriptio,
+       'allone': isAllone,
+       'indoor': isIndoor
+     }
+     var formBody = [];
+     for (var property in details) {
+  var encodedKey = encodeURIComponent(property);
+  var encodedValue = encodeURIComponent(details[property]);
+  formBody.push(encodedKey + "=" + encodedValue);
+}
+formBody = formBody.join("&");
+
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded", "Access-Control-Allow-Origin": "*"},
+        body: formBody
+  };
+  fetch("https://api.interessenfinder.de/data", requestOptions)
+    .then((response) => response.json())
+      .then((responseData) => {
+         alert(JSON.stringify(responseData))
+    })
     }
   }
 };
